@@ -2,41 +2,53 @@ import { connectDatabase, getAllDocuments } from '../../helpers/db-util';
 
 function BlogPage(props) {
   const { item } = props;
+  const data = JSON.parse(item);
   return (
-    <div>
-      <h2>{item.title}</h2>
+    <div style={{ marginTop: '50px' }}>
+      <h2 style={{ textAlign: 'center', fontWeight: '600', marginTop: '30px' }}>
+        {data.title}
+      </h2>
       <div>
-        <p>{item.content}</p>
+        <p
+          style={{
+            textAlign: 'center',
+            fontWeight: '400',
+            fontSize: '28px',
+            marginTop: '30px',
+          }}>
+          {data.content}
+        </p>
       </div>
-      <div>{item.author}</div>
+      <div>
+        <p
+          style={{
+            textAlign: 'center',
+            fontWeight: '400',
+            fontSize: '28px',
+            marginTop: '30px',
+          }}>
+          {' '}
+          {data.author}
+        </p>{' '}
+      </div>
     </div>
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { params } = context;
   const client = await connectDatabase();
   const data = await getAllDocuments(client, 'blog', { _id: -1 });
-  const selectedData = data.find((blog) => blog._id === params.id);
+
+  const selectedData = data.find(
+    (blog) => blog._id.toString() === params.id.toString()
+  );
+  console.log(selectedData);
   client.close();
   return {
     props: {
-      item: selectedData,
+      item: JSON.stringify(selectedData),
     },
-  };
-}
-
-export async function getStaticPaths() {
-  const client = await connectDatabase();
-  const data = await getAllDocuments(client, 'blog', { _id: -1 });
-  console.log(data);
-  client.close();
-
-  const paths = data.map((item) => ({ params: { id: item._id } }));
-
-  return {
-    paths: paths,
-    fallback: 'blocking',
   };
 }
 
