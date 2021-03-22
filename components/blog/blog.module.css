@@ -1,0 +1,38 @@
+.blogcontainer {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: hsla(0, 0, 0, 0.2) 0 4px 2px -2px;
+  font-family: 'adelle-sans', sans-serif;
+  font-weight: 100;
+  margin: 48px auto;
+  width: 80rem;
+  @media screen and (min-width: 480px) {
+    width: 28rem;
+  }
+  @media screen and (min-width: 767px) {
+    width: 40rem;
+  }
+  @media screen and (min-width: 959px) {
+    width: 50rem;
+  }
+}
+
+.titl {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.data {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.auth {
+  text-align: right;
+  font-weight: 400;
+  font-size: 20px;
+}

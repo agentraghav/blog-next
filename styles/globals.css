@@ -2,13 +2,20 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #fadde1;
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.feature-center {
+  text-align: center;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 * {
