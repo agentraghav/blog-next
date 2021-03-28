@@ -12,10 +12,12 @@ function HomePage(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const client = await connectDatabase();
   const data = await getAllDocuments(client, 'blog', { _id: -1 });
+
   const filteredData = data.filter((blog) => blog.feature);
+
   client.close();
   return {
     props: {

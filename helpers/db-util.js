@@ -1,10 +1,10 @@
 import { MongoClient } from 'mongodb';
 
 export async function connectDatabase() {
-  const client = await MongoClient.connect(
-    'mongodb+srv://agentraghav:test@cluster0.6npik.mongodb.net/nextblog?retryWrites=true&w=majority',
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  );
+  const client = await MongoClient.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
   return client;
 }
 
@@ -19,7 +19,7 @@ export async function insertDocument(client, collection, document) {
 export async function getAllDocuments(client, collection, sort) {
   const db = client.db();
 
-  const documents = await db.collection(collection).find().sort(sort).toArray();
+  const documents = await db.collection(collection).find().toArray();
 
   return documents;
 }

@@ -47,9 +47,13 @@ async function handler(req, res) {
     } catch (error) {
       res.status(500).json({ message: 'Deletion of Blog failed!' });
     }
-  } else {
-    const data = await getAllDocuments(client, 'blog', { _id: -1 });
-    res.status(200).json({ data: data });
+  } else if (req.method === 'GET') {
+    try {
+      const result = await getAllDocuments(client, 'blog', { _id: -1 });
+      res.status(201).json({ data: result });
+    } catch (error) {
+      res.status(500).json({ message: 'Fetching failed!' });
+    }
   }
   client.close();
 }

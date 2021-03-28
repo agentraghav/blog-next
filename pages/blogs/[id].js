@@ -4,7 +4,7 @@ function BlogPage(props) {
   const { item } = props;
   const data = JSON.parse(item);
   return (
-    <div style={{ marginTop: '50px' }}>
+    <div style={{ marginTop: '50px', padding: '20px', borderColor: '#fff' }}>
       <h2 style={{ textAlign: 'center', fontWeight: '600', marginTop: '30px' }}>
         {data.title}
       </h2>
