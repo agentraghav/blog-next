@@ -7,6 +7,19 @@ function Blog(props) {
     Router.push(`/blogs/${id}`);
   };
 
+  const deletePost = (e) => {
+    const blogData = { id };
+    fetch('/api/blog', {
+      method: 'DELETE',
+      body: JSON.stringify(blogData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        Router.push('/');
+      });
+  };
+
   return (
     <div key={id} className={classes.blogcontainer}>
       <div>
@@ -24,6 +37,11 @@ function Blog(props) {
         className='btn btn-secondary'>
         Explore Blog
       </button>
+      <i
+        style={{ marginLeft: '600px', cursor: 'pointer' }}
+        className='fa fa-trash fa-lg'
+        onClick={deletePost}
+        aria-hidden='true'></i>
     </div>
   );
 }

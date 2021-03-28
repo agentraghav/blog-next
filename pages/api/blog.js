@@ -38,6 +38,15 @@ async function handler(req, res) {
     } catch (error) {
       res.status(500).json({ message: 'Inserting Blog failed!' });
     }
+  } else if (req.method === 'DELETE') {
+    try {
+      const { id } = req.body;
+      const db = client.db();
+      const result = await db.collection('blog').deleteOne(id);
+      res.status(201).json({ message: 'Deleted Blog.' });
+    } catch (error) {
+      res.status(500).json({ message: 'Deletion of Blog failed!' });
+    }
   } else {
     const data = await getAllDocuments(client, 'blog', { _id: -1 });
     res.status(200).json({ data: data });
