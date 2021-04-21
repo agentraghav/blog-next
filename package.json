@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "ts-node --project tsconfig.server.json server/index.ts",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build:next": "next build",
+    "build": "npm run build:next && npm run build:server",
+    "start": "NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
@@ -16,10 +18,18 @@
     "bootstrap": "^5.0.0-beta2",
     "dotenv": "^8.2.0",
     "env": "0.0.2",
+    "express": "^4.17.1",
     "mongodb": "^3.6.5",
     "next": "10.0.9",
     "react": "17.0.1",
     "react-bootstrap": "^1.5.2",
     "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.41",
+    "@types/react": "^17.0.3",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
   }
 }
